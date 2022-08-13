@@ -75,13 +75,13 @@ public class ToolEnchants {
 										player.level.setBlock(event.getPos(), Blocks.AIR.defaultBlockState(), 16);
 										if (player.isCreative()) {
 											player.level.setBlockAndUpdate(event.getPos(),
-													event.getState().setValue(((CocoaBlock) block).AGE, 0));
+													event.getState().setValue(CocoaBlock.AGE, 0));
 											event.setCanceled(true);
 											return;
 										}
-										block.dropResources(event.getState(), player.level, event.getPos());
+										Block.dropResources(event.getState(), player.level, event.getPos());
 										player.level.setBlockAndUpdate(event.getPos(),
-												event.getState().setValue(((CocoaBlock) block).AGE, 0));
+												event.getState().setValue(CocoaBlock.AGE, 0));
 										player.inventory.removeItem(x, 1);
 										event.setCanceled(true);
 										return;

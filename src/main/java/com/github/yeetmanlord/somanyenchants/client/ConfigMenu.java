@@ -78,7 +78,7 @@ public class ConfigMenu extends Screen {
 			return new OptionInstance<Integer>("so_many_enchants.screen.config.max_level." + textComponent, OptionInstance.noTooltip(), (component, value) -> {
 				return Options.genericValueLabel(component, value);
 			}, new OptionInstance.IntRange(1, configEntry.absoluteMax), configEntry.maxLevel.get(), (value) -> {
-				this.setMaxLevel(configEntry, value);
+				setMaxLevel(configEntry, value);
 			});
 		}
 		else {
@@ -90,7 +90,7 @@ public class ConfigMenu extends Screen {
 			}, (component, value) -> {
 				return Options.genericValueLabel(component, value);
 			}, new OptionInstance.IntRange(1, configEntry.absoluteMax), configEntry.maxLevel.get(), (value) -> {
-				this.setMaxLevel(configEntry, value);
+				setMaxLevel(configEntry, value);
 			});
 		}
 
