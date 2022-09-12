@@ -717,7 +717,7 @@ public abstract class AbstractEnchantedSmelterTileEntity extends BaseContainerBl
 	public void addEnchantment(Enchantment ench, short lvl) {
 
 		CompoundTag nbt = new CompoundTag();
-		nbt.putString("id", ench.getDescriptionId().toString());
+		nbt.putString("id", Registry.ENCHANTMENT.getKey(ench).toString());
 		nbt.putShort("lvl", lvl);
 		this.enchantmentNBT.add(nbt);
 		CompoundTag writeNBT = new CompoundTag();

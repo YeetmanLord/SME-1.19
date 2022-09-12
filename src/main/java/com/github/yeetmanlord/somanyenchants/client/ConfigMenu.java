@@ -1,8 +1,8 @@
 package com.github.yeetmanlord.somanyenchants.client;
 
+import java.io.IOException;
 import java.util.List;
 
-import com.electronwill.nightconfig.core.io.WritingException;
 import com.github.yeetmanlord.somanyenchants.SoManyEnchants;
 import com.github.yeetmanlord.somanyenchants.core.config.Config;
 import com.github.yeetmanlord.somanyenchants.core.config.EnchantmentConfig;
@@ -50,10 +50,9 @@ public class ConfigMenu extends Screen {
 	private static void setMaxLevel(EnchantmentConfig config, double val) {
 
 		try {
-			SoManyEnchants.LOGGER.debug("Test");
 			config.maxLevel.set((int) val);
 		}
-		catch (WritingException exc) {
+		catch (IOException exc) {
 			SoManyEnchants.LOGGER.error("Could not save " + config.name + " config because the file is in use. Retrying...");
 			setMaxLevel(config, val);
 		}
@@ -65,7 +64,7 @@ public class ConfigMenu extends Screen {
 		try {
 			config.isEnabled.set(value);
 		}
-		catch (WritingException exc) {
+		catch (IOException exc) {
 			SoManyEnchants.LOGGER.error("Could not save " + config.name + " config because the file is in use. Retrying...");
 			setIsEnabled(config, value);
 		}
@@ -205,7 +204,7 @@ public class ConfigMenu extends Screen {
 			try {
 				Config.villager.isEnabled.set(value);
 			}
-			catch (WritingException exc) {
+			catch (IOException exc) {
 				SoManyEnchants.LOGGER.error("Could not save villager config because the file is in use. Retrying");
 			}
 
@@ -275,11 +274,11 @@ public class ConfigMenu extends Screen {
 	private void setDefault() {
 
 		Config.configSections.values().forEach((value) -> {
-			value.maxLevel.set(value.normal);
-			value.isEnabled.set(value.isEnabled.getDefault());
+			value.isEnabled.setNoUpdate(value.isEnabled.getDefault());
+			value.maxLevel.setNoUpdate(value.maxLevel.getDefault());
 		});
 
-		Config.villager.isEnabled.set(true);
+		Config.villager.isEnabled.setNoUpdate(true);
 		this.refresh();
 
 	}
@@ -299,11 +298,25 @@ public class ConfigMenu extends Screen {
 	@Override
 	public void onClose() {
 
+		try {
+			Config.sendChanges();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		this.minecraft.setScreen((Screen) null);
 
 	}
 
 	private void refresh() {
+
+		try {
+			Config.sendChanges();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		this.minecraft.setScreen(new ConfigMenu());
 

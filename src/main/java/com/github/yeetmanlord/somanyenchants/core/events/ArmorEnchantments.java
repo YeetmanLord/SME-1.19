@@ -27,6 +27,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.TickEvent.PlayerTickEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent.PlayerChangeGameModeEvent;
@@ -172,6 +174,7 @@ public class ArmorEnchantments {
 
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	public static class ClientAccess {
 
 		public static void updatePlayerFlying(boolean flying) {
