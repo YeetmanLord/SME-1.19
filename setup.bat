@@ -1,1 +1,1 @@
-gradlew eclipse&gradlew genEclipseRuns&pause
+gradlew genIntellijRuns --refresh-dependencies&pause
