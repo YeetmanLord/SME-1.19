@@ -93,7 +93,7 @@ public class ModEnchantment extends Enchantment {
 			return this.config.isEnabled.get() && modEnch.config.isEnabled.get() && super.checkCompatibility(ench);
 		}
 		else {
-			return this.config.isEnabled.get();
+			return this.config.isEnabled.get() && super.checkCompatibility(ench);
 		}
 
 	}

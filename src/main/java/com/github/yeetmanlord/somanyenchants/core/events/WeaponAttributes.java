@@ -22,8 +22,6 @@ public class WeaponAttributes {
 
 		if (event.getEntity() instanceof Player) {
 			Player player = (Player) event.getEntity();
-			ItemStack to = event.getTo();
-			ItemStack from = event.getFrom();
 			EquipmentSlot slot = event.getSlot();
 
 			if (slot == EquipmentSlot.MAINHAND) {
