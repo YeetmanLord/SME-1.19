@@ -318,7 +318,7 @@ public class AttributeHelper {
 			int level = ModEnchantmentHelper.getEnchantmentLevel(ench, to);
 			int level1 = ModEnchantmentHelper.getEnchantmentLevel(ench, from);
 
-			if (flag1 && !(ItemStack.isSameIgnoreDurability(to, from) || level1 == level)) {
+			if (flag1 && level1 != level) {
 
 				if (attr == Attributes.ATTACK_SPEED) {
 					double value = level * multiplier;
@@ -334,7 +334,7 @@ public class AttributeHelper {
 				}
 
 			}
-			else if (flag2 && !(ItemStack.isSameIgnoreDurability(to, from) || level1 == level)) {
+			else if (flag2 && level1 != level) {
 				PlayerAttributeHandler.removeAttribute(player, attr, from);
 			}
 
